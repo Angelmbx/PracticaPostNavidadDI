@@ -37,7 +37,8 @@ public class InterfazPunto extends JFrame implements ActionListener {
 	JRadioButton cuadrado;
 	JRadioButton triangulo;
 
-	JComboBox comboFiguras;
+	JLabel JLcolorFiguras;
+	JComboBox comboColorFiguras;
 
 	JList <String> JTFdistancia;
 	DefaultListModel <String> dlm;
@@ -109,7 +110,24 @@ public class InterfazPunto extends JFrame implements ActionListener {
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(4, 10, 10, 4)));
 		panelNorteDer.add(JTFPunto2y, createConstraints(4, 1, 2, 1, 1.0, 1.0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(4, 10, 10, 4)));
-		;
+
+		// Tercera fila del panel norte derecho con el selector de color para las figuras.
+		JLcolorFiguras =new JLabel("Selecciona el color de tu figura:");
+		panelNorteDer.add(JLcolorFiguras, createConstraints(0,2, 1,1,1.0,1.0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(4, 10,10,4)));
+
+
+		comboColorFiguras = new JComboBox<>();
+		comboColorFiguras.addItem("Azul");
+		comboColorFiguras.addItem("Rojo");
+		comboColorFiguras.addItem("Verde");
+
+		panelNorteDer.add(comboColorFiguras, createConstraints(1,2, 1,1,1.0,1.0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(4, 10,10,4)));
+
+
+
+
 		// Añadir el panel norte a la interfaz, la cual por ser un JFrame utiliza por
 		// defecto el layout BorderLayout
 
@@ -117,7 +135,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 
 		//Añado los radiobutton al panel norte izquierdo.
 
-		panelNorteIzq.setLayout(new GridLayout(4,1));
+		panelNorteIzq.setLayout(new GridLayout(5,1));
 		panelNorteIzq.setBorder(BorderFactory.createTitledBorder(""));
 
 		seleccionFiguraLabel = new JLabel("¿Qué figura quieres dibujar?");
@@ -127,12 +145,15 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		linea = new JRadioButton("Linea");
 		cuadrado = new JRadioButton("Cuadrado");
 		triangulo = new JRadioButton("Triángulo");
-
+		/*comboColorFiguras = new JComboBox<>();
+		comboColorFiguras.addItem("Azul");
+		comboColorFiguras.addItem("Rojo");
+		comboColorFiguras.addItem("Verde");*/
 
 
 		buttonGroup.add(linea); buttonGroup.add(cuadrado); buttonGroup.add(triangulo);
 
-		panelNorteIzq.add(linea); panelNorteIzq.add(cuadrado); panelNorteIzq.add(triangulo);
+		panelNorteIzq.add(linea); panelNorteIzq.add(cuadrado); panelNorteIzq.add(triangulo);// panelNorteIzq.add(comboColorFiguras);
 
 
 		/*
