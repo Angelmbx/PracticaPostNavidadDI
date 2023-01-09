@@ -28,7 +28,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 	JButton JBCalcular;
 	JButton JBDibujar;
 	JButton JBLimpiar;
-	JTextArea JTFdistancia;
+	//JTextArea JTFdistancia;
 
 	JLabel seleccionFiguraLabel;
 
@@ -38,6 +38,10 @@ public class InterfazPunto extends JFrame implements ActionListener {
 	JRadioButton triangulo;
 
 	JComboBox comboFiguras;
+
+	JList <String> JTFdistancia;
+	DefaultListModel <String> dlm;
+
 
 	PanelDibujo dibujar;
 
@@ -80,7 +84,10 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		JBDibujar = new JButton("Dibujar");
 		JBLimpiar = new JButton("Limpiar");
 
-		JTFdistancia = new JTextArea();
+		//JTFdistancia = new JTextArea();
+		dlm = new DefaultListModel<String>();
+		JTFdistancia = new JList<>(dlm);
+
 
 		panelNorteDer.setLayout(new GridBagLayout());
 		// Construir la primera fila de componentes
@@ -147,7 +154,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		Border miBorde = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
 
 		panelCentral.setBorder(miBorde);
-		JTFdistancia.setEditable(false);
+		//JTFdistancia.setEditable(false);
 		JTFdistancia.setBorder(miBorde);
 
 		panelCentral.add(JTFdistancia);
@@ -239,7 +246,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 			// modificamos la clase punto
 			// y le añado el método mostrarPunto
 
-			JTFdistancia.setText(JTFdistancia.getText() + (distanciaPuntos + "\n"));
+			//JTFdistancia.setText(JTFdistancia.getText() + (distanciaPuntos + "\n"));
 
 			// Al calcular la distancia entre dos puntos activar el botón Dibujar
 			JBDibujar.setEnabled(true);
