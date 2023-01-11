@@ -42,7 +42,8 @@ public class InterfazPunto extends JFrame implements ActionListener {
 
 	JList <String> JTFdistancia;
 	DefaultListModel <String> dlm;
-
+	JPanel panelTitulo;
+	JPanel panelDibujo;
 
 	PanelDibujo dibujar;
 
@@ -65,7 +66,9 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		panelNorteIzq = new JPanel();
 		panelSur = new JPanel();
 		dibujar = new PanelDibujo();
-		dibujar.setBackground(Color.gray);
+		panelTitulo = new JPanel();
+		panelDibujo = new JPanel();
+
 
 		lpunto1x = new JLabel("Coordenada x");
 		lpunto1y = new JLabel("Coordenada y");
@@ -140,10 +143,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		linea = new JRadioButton("Linea");
 		cuadrado = new JRadioButton("Cuadrado");
 		triangulo = new JRadioButton("Triángulo");
-		/*comboColorFiguras = new JComboBox<>();
-		comboColorFiguras.addItem("Azul");
-		comboColorFiguras.addItem("Rojo");
-		comboColorFiguras.addItem("Verde");*/
+
 
 
 		buttonGroup.add(linea); buttonGroup.add(cuadrado); buttonGroup.add(triangulo);
@@ -151,13 +151,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		panelNorteIzq.add(linea); panelNorteIzq.add(cuadrado); panelNorteIzq.add(triangulo);// panelNorteIzq.add(comboColorFiguras);
 
 
-		/*
-		comboFiguras = new JComboBox();
-		comboFiguras.addItem("linea");
-		comboFiguras.addItem("cuadrado");
-		comboFiguras.addItem("triangulo");
 
-		panelNorteIzq.add(comboFiguras);*/
 
 		panelNorte.add(panelNorteIzq);
 
@@ -172,6 +166,13 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		panelCentral.setBorder(miBorde);
 		//JTFdistancia.setEditable(false);
 		JTFdistancia.setBorder(miBorde);
+
+		dibujar.setLayout(new GridLayout(2,1));
+		panelTitulo.setBackground(Color.gray);
+		panelDibujo.setBackground(Color.gray);
+		dibujar.add(panelTitulo);
+		dibujar.add(panelDibujo);
+
 
 		panelCentral.add(JTFdistancia);
 		panelCentral.add(dibujar);
