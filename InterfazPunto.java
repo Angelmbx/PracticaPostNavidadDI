@@ -26,10 +26,9 @@ public class InterfazPunto extends JFrame implements ActionListener {
 	JTextField JTFPunto2x;
 	JTextField JTFPunto2y;
 	JButton JBCalcular;
-	JButton JBDibujar;
 	JButton JBLimpiar;
 	//JTextArea JTFdistancia;
-
+	JColorChooser colorChooser;
 	JLabel seleccionFiguraLabel;
 
 	ButtonGroup buttonGroup;
@@ -39,6 +38,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 
 	JLabel JLcolorFiguras;
 	JComboBox comboColorFiguras;
+	JButton coloresButton;
 
 	JList <String> JTFdistancia;
 	DefaultListModel <String> dlm;
@@ -82,7 +82,6 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		JTFPunto2y = new JTextField();
 
 		JBCalcular = new JButton("Calcular");
-		JBDibujar = new JButton("Dibujar");
 		JBLimpiar = new JButton("Limpiar");
 
 		//JTFdistancia = new JTextArea();
@@ -116,15 +115,11 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		panelNorteDer.add(JLcolorFiguras, createConstraints(0,2, 1,1,1.0,1.0,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(4, 10,10,4)));
 
-
-		comboColorFiguras = new JComboBox<>();
-		comboColorFiguras.addItem("Azul");
-		comboColorFiguras.addItem("Rojo");
-		comboColorFiguras.addItem("Verde");
-
-		panelNorteDer.add(comboColorFiguras, createConstraints(1,2, 1,1,1.0,1.0,
+				//Creo el boton colores que desplegará el JColorChooser y lo pongo a la escucha
+		coloresButton = new JButton("Colores");
+		panelNorteDer.add(coloresButton, createConstraints(1,2, 1,1,1.0,1.0,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(4, 10,10,4)));
-
+		coloresButton.addActionListener(this);
 
 
 
@@ -190,8 +185,6 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		// Construir la fila de botones
 		panelSur.add(JBCalcular, createConstraints(0, 0, 1, 1, 1.0, 1.0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(4, 10, 10, 4)));
-		panelSur.add(JBDibujar, createConstraints(1, 0, 1, 1, 1.0, 1.0,
-				GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(4, 10, 10, 4)));
 		panelSur.add(JBLimpiar, createConstraints(2, 0, 1, 1, 1.0, 1.0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(4, 10, 10, 4)));
 
@@ -201,10 +194,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		// Poner los botones a la escucha
 		JBCalcular.addActionListener(this);
 		JBLimpiar.addActionListener(this);
-		JBDibujar.addActionListener(this);
 
-		// Poner el botón dibujar desactivado hasta que el usuario introduzca un puno
-		JBDibujar.setEnabled(false);
 
 		// Poner el punto 1 no editaable para que el usuario tenga el primer punto fijo
 		JTFPunto1x.setEditable(false);
@@ -249,6 +239,18 @@ public class InterfazPunto extends JFrame implements ActionListener {
 		 * del foco
 		 * 
 		 */
+		if (arg0.getSource() == coloresButton){
+			colorChooser = new JColorChooser();
+			
+			try {
+				Color color=colorChooser.showDialog(dibujar,"Elige un color",Color.red);
+				System.out.println(color);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+
+		}
 
 		if (arg0.getSource() == JBCalcular) {
 			try {
@@ -269,8 +271,6 @@ public class InterfazPunto extends JFrame implements ActionListener {
 
 			//JTFdistancia.setText(JTFdistancia.getText() + (distanciaPuntos + "\n"));
 
-			// Al calcular la distancia entre dos puntos activar el botón Dibujar
-			JBDibujar.setEnabled(true);
 		}
 		if (arg0.getSource() == JBLimpiar) {
 
@@ -284,8 +284,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 			dibujar.repaint();
 
 		}
-		if (arg0.getSource() == JBDibujar) {
-			JBDibujar.setEnabled(false);
+
 
 			dibujar.asignarPunto(miPunto1, miPunto2);
 			dibujar.setLimpiar(false);
@@ -311,7 +310,7 @@ public class InterfazPunto extends JFrame implements ActionListener {
 
 		}
 
-	}
+
 
 	public static void main(String s[]) {
 		InterfazPunto miVentanaPunto = new InterfazPunto();
